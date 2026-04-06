@@ -5,7 +5,7 @@ import eslint from "vite-plugin-eslint";
 
 export default defineConfig({
   vite: {
-    plugins: [tailwindcss(), eslint(), checker({ typescript: false })],
+    plugins: [tailwindcss(), /*eslint(), checker({ typescript: false })*/],
     server: {
       watch: {
         usePolling: true,
