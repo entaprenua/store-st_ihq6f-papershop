@@ -1,0 +1,54 @@
+import { CartItems, CartItemsView, CartItemCheckbox, CartEmpty, CartSummary, CartClearTrigger, CartCheckoutTrigger } from "~/components/ui/cart"
+import { Product, ProductImage, ProductName, ProductPrice, ProductQuantityActions, ProductRemoveFromCartTrigger } from "~/components/ui/product"
+import { Button } from "~/components/ui/button"
+import { Flex } from "~/components/ui/flex"
+import { Text } from "~/components/ui/text"
+import { Link } from "~/components/ui/link"
+
+export default function CartPage() {
+  return (
+    <div class="container mx-auto px-4 py-8">
+      <Text variant="h1" class="text-3xl font-bold mb-8">Shopping Cart</Text>
+      <Flex gap={8}>
+        <div class="flex-1">
+          <CartItems>
+            <CartItemsView>
+              <div class="bg-white rounded-lg border p-4 mb-4">
+                <Flex gap={4} align="start">
+                  <CartItemCheckbox />
+                  <Product class="flex gap-4">
+                    <ProductImage class="w-24 h-24 object-cover rounded" />
+                    <div class="flex-1">
+                      <ProductName class="font-medium" />
+                      <ProductPrice class="mt-1" />
+                    </div>
+                    <ProductQuantityActions />
+                    <ProductRemoveFromCartTrigger />
+                  </Product>
+                </Flex>
+              </div>
+            </CartItemsView>
+            <CartEmpty>
+              <div class="text-center py-12">
+                <h2 class="text-xl font-medium mb-2">Your cart is empty</h2>
+                <p class="text-muted-foreground mb-4">Add some products to get started</p>
+                <Button as={Link} href="/products">Browse Products</Button>
+              </div>
+            </CartEmpty>
+          </CartItems>
+        </div>
+
+        <div class="w-full md:w-80">
+          <div class="bg-white rounded-lg border p-6 sticky top-4">
+            <CartEmpty />
+            <CartSummary>
+              <Text variant="h2" class="text-lg font-semibold mb-4">Order Summary</Text>
+              <CartClearTrigger class="w-full mt-4" />
+              <CartCheckoutTrigger href="/checkout" class="w-full mt-4" />
+            </CartSummary>
+          </div>
+        </div>
+      </Flex>
+    </div>
+  )
+}
